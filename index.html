@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Pretentious Blog</title>
   <style>
-    /* Reset */
     * {
       margin: 0;
       padding: 0;
@@ -20,7 +19,6 @@
       flex-direction: column;
     }
 
-    /* Navbar */
     nav {
       background-color: #d2b48c; /* Tan */
       padding: 1rem 2rem;
@@ -41,7 +39,6 @@
       text-decoration: underline;
     }
 
-    /* Sections */
     .content-section {
       padding: 2rem;
       flex-grow: 1;
@@ -52,7 +49,6 @@
       text-align: center;
     }
 
-    /* Blog Preview */
     .blog-list {
       display: grid;
       gap: 2rem;
@@ -71,7 +67,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    /* Full Blog Popup */
     .full-blog {
       position: fixed;
       top: 0;
@@ -79,7 +74,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.7);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       padding: 2rem;
@@ -112,11 +107,7 @@
       font-weight: bold;
       font-size: 1.2rem;
     }
-    .hidden {
-      display: none;
-    }
 
-    /* Footer */
     footer {
       background-color: #d2b48c;
       text-align: center;
@@ -126,7 +117,6 @@
       margin-top: auto;
     }
 
-    /* Forms */
     form {
       display: flex;
       flex-direction: column;
@@ -156,13 +146,11 @@
       background: #c0a080;
     }
 
-    /* Dates in blogs */
     .date {
       font-size: 0.9rem;
       color: #7c5c4a;
       margin-bottom: 1rem;
     }
-
   </style>
 </head>
 
@@ -189,25 +177,24 @@
     <div class="section-title">Blog Posts</div>
 
     <div class="blog-list">
-
-      <div class="blog-preview" onclick="openBlog('post1')">
+      <div class="blog-preview" data-post="pretentious">
         <h2>Pretentious Bullshit</h2>
         <p class="date">April 28, 2025</p>
         <p>In the grand scheme of things, we often overcomplicate...</p>
       </div>
 
-      <div class="blog-preview" onclick="openBlog('post2')">
+      <div class="blog-preview" data-post="diedie">
         <h2>Die Die Die...</h2>
         <p class="date">April 28, 2025</p>
         <p>Every day, parts of us die. The old ambitions...</p>
       </div>
-
     </div>
 
-    <!-- Full Blog Modal -->
-    <div id="fullBlog" class="full-blog hidden">
+    <!-- Full Blog Popup -->
+    <div class="full-blog" id="fullBlog">
       <div class="full-blog-content" id="fullBlogContent">
         <span class="close-btn" onclick="closeBlog()">X</span>
+        <div id="blogDetails"></div>
       </div>
     </div>
 
@@ -216,14 +203,12 @@
   <!-- Contact Section -->
   <div id="contact" class="content-section">
     <div class="section-title">Contact Me</div>
-
     <form action="https://formspree.io/f/mgvkvbyy" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send Feedback</button>
     </form>
-
   </div>
 
   <!-- Footer -->
@@ -233,35 +218,40 @@
 
   <!-- Script -->
   <script>
-    // Blog data
     const blogPosts = {
-      post1: {
+      pretentious: {
         title: "Pretentious Bullshit",
         date: "April 28, 2025",
-        content: "In the grand scheme of things, we often overcomplicate the simplest concepts. What we call 'progress' is often a clever reframing of old ideas. Perhaps true growth lies not in mastery, but in realizing how little matters at all. Maybe it's all just, well... pretentious bullshit."
+        content: `In the grand scheme of things, we often overcomplicate the simplest concepts.
+                  What we call 'progress' is often a clever reframing of old ideas.
+                  Perhaps true growth lies not in mastery, but in realizing how little matters at all.
+                  Maybe it's all just, well... pretentious bullshit.`
       },
-      post2: {
+      diedie: {
         title: "Die Die Die...",
         date: "April 28, 2025",
-        content: "Every day, parts of us die. The old ambitions, the fading friendships, the misplaced fears — they all dissolve quietly. Yet, in every death, there’s an unseen rebirth. Maybe 'die, die, die' isn't a chant of despair but an anthem of transformation. Shed the layers. Kill the illusions. Let what must die, die — so that something truer can live."
+        content: `Every day, parts of us die. The old ambitions, the fading friendships, the misplaced fears — they all dissolve quietly.
+                  Yet, in every death, there’s an unseen rebirth.
+                  Maybe 'die, die, die' isn't a chant of despair but an anthem of transformation.
+                  Shed the layers. Kill the illusions. Let what must die, die — so that something truer can live.`
       }
     };
 
-    // Open Blog
-    function openBlog(postId) {
-      const blog = blogPosts[postId];
-      document.getElementById('fullBlogContent').innerHTML = `
-        <span class="close-btn" onclick="closeBlog()">X</span>
-        <h2>${blog.title}</h2>
-        <p class="date">${blog.date}</p>
-        <p style="margin-top:1rem;">${blog.content}</p>
-      `;
-      document.getElementById('fullBlog').classList.remove('hidden');
-    }
+    document.querySelectorAll('.blog-preview').forEach(preview => {
+      preview.addEventListener('click', function() {
+        const postId = this.getAttribute('data-post');
+        const post = blogPosts[postId];
+        document.getElementById('blogDetails').innerHTML = `
+          <h2>${post.title}</h2>
+          <p class="date">${post.date}</p>
+          <p style="margin-top:1rem;">${post.content}</p>
+        `;
+        document.getElementById('fullBlog').style.display = 'flex';
+      });
+    });
 
-    // Close Blog
     function closeBlog() {
-      document.getElementById('fullBlog').classList.add('hidden');
+      document.getElementById('fullBlog').style.display = 'none';
     }
   </script>
 
