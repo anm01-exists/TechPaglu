@@ -1,178 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Blog</title>
-    <style>
-        /* General body and layout styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Blog</title>
+  <style>
+    /* Layout Basics */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5dc; /* light beige background */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        /* Header Styling */
-        header {
-            background-color: #0d3b66;
-            color: white;
-            padding: 3rem;
-            text-align: center;
-            background-image: url('https://via.placeholder.com/1500x500'); /* Placeholder background */
-            background-size: cover;
-            background-position: center;
-        }
-        header h1 {
-            font-size: 3rem;
-            margin: 0;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            font-style: italic;
-        }
+    /* Navbar Styling */
+    nav {
+      background-color: #556b2f; /* olive green */
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+    }
+    nav a:hover {
+      background-color: #6b8e23; /* lighter olive on hover */
+      border-radius: 5px;
+    }
 
-        /* Navigation Bar Styling */
-        nav {
-            background-color: #034f84;
-            overflow: hidden;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            display: inline-block;
-            padding: 14px 20px;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-        nav a:hover {
-            background-color: #0277bd;
-        }
+    /* Header Styling */
+    header {
+      background-color: #808000; /* dark olive */
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      background-image: url('https://via.placeholder.com/1500x400?text=Blog+Banner');
+      background-size: cover;
+      background-position: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
 
-        /* Main Content Section Styling */
-        main {
-            padding: 3rem 2rem;
-            flex: 1; /* Allows the content to grow and fill the space */
-        }
-        .content-section {
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #0d3b66;
-        }
-        article {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .date {
-            color: gray;
-            font-size: 0.9rem;
-        }
+    /* Main Content Styling */
+    main {
+      flex: 1;
+      padding: 3rem 2rem;
+    }
+    .content-section {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #556b2f;
+    }
+    article {
+      background: #fff;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .date {
+      color: gray;
+      font-size: 0.9rem;
+    }
 
-        /* Contact Form Styles */
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .contact-form button {
-            background-color: #0d3b66;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .contact-form button:hover {
-            background-color: #0277bd;
-        }
+    /* Contact Form Styling */
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .contact-form button {
+      background-color: #556b2f;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .contact-form button:hover {
+      background-color: #6b8e23;
+    }
 
-        /* Footer Styling */
-        footer {
-            background-color: #034f84;
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-        }
-    </style>
+    /* Footer Styling */
+    footer {
+      background-color: #808000;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Blog!</h1>
-        <p>Thoughts, stories, and ideas. Join me on this journey.</p>
-    </header>
 
-    <nav>
-        <a href="javascript:void(0);" onclick="showContent('home')">Home</a>
-        <a href="javascript:void(0);" onclick="showContent('about')">About Me</a>
-        <a href="javascript:void(0);" onclick="showContent('blog')">Blog Posts</a>
-        <a href="javascript:void(0);" onclick="showContent('contact')">Contact</a>
-    </nav>
+  <!-- Navbar First -->
+  <nav>
+    <a href="javascript:void(0);" onclick="showContent('home')">Home</a>
+    <a href="javascript:void(0);" onclick="showContent('about')">About Me</a>
+    <a href="javascript:void(0);" onclick="showContent('blog')">Blog Posts</a>
+    <a href="javascript:void(0);" onclick="showContent('contact')">Contact</a>
+  </nav>
 
-    <main>
-        <!-- Home Section -->
-        <div id="home" class="content-section active">
-            <div class="section-title">Welcome to My Personal Blog</div>
-            <p>I'm so glad you're here! This blog is a space where I share my thoughts, musings, and creative expressions. Stick around for more!</p>
-        </div>
+  <!-- Header Banner -->
+  <header>
+    <h1>Welcome to My Blog!</h1>
+    <p>Thoughts, stories, and ideas. Join me on this journey.</p>
+  </header>
 
-        <!-- About Me Section -->
-        <div id="about" class="content-section">
-            <div class="section-title">About Me</div>
-            <p>Hi! I'm [Your Name], a curious thinker with an affinity for technology and philosophy. I started this blog to document my journey of discovery and the things I encounter along the way.</p>
-        </div>
+  <!-- Main Content -->
+  <main>
+    <!-- Home Section -->
+    <div id="home" class="content-section active">
+      <div class="section-title">Welcome to My Personal Blog</div>
+      <p>I'm so glad you're here! This blog is a space where I share my thoughts, musings, and creative expressions. Stick around for more!</p>
+    </div>
 
-        <!-- Blog Section -->
-        <div id="blog" class="content-section">
-            <article>
-                <h2>Pretentious Bullshit</h2>
-                <p class="date">April 28, 2025</p>
-                <p>In the grand scheme of things, we often overcomplicate the simplest of concepts. What we call "progress" is often just a shift in perspective, or better yet, a skillful manipulation of what we consider important. The world continues to turn, yet we seem bent on creating significance out of mere distractions. Perhaps the only true advancement is in our ability to understand this absurdity and embrace the chaos. But I digress—it's all just pretentious bullshit, really.</p>
-            </article>
-        </div>
+    <!-- About Me Section -->
+    <div id="about" class="content-section">
+      <div class="section-title">About Me</div>
+      <p>Hi! I'm [Your Name], a curious thinker with an affinity for technology and philosophy. I started this blog to document my journey of discovery and the things I encounter along the way.</p>
+    </div>
 
-        <!-- Contact Section -->
-        <div id="contact" class="content-section">
-            <div class="section-title">Contact Me</div>
-            <p>If you'd like to get in touch, feel free to reach out through the form below:</p>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="4" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </main>
+    <!-- Blog Section -->
+    <div id="blog" class="content-section">
+      <article>
+        <h2>Pretentious Bullshit</h2>
+        <p class="date">April 28, 2025</p>
+        <p>In the grand scheme of things, we often overcomplicate the simplest of concepts. What we call "progress" is often just a shift in perspective, or better yet, a skillful manipulation of what we consider important. The world continues to turn, yet we seem bent on creating significance out of mere distractions. Perhaps the only true advancement is in our ability to understand this absurdity and embrace the chaos. But I digress—it's all just pretentious bullshit, really.</p>
+      </article>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
-    </footer>
+    <!-- Contact Section -->
+    <div id="contact" class="content-section">
+      <div class="section-title">Contact Me</div>
+      <p>If you'd like to get in touch, feel free to reach out through the form below:</p>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </main>
 
-    <script>
-        function showContent(section) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(function(section) {
-                section.classList.remove('active');
-            });
+  <!-- Footer Always at Bottom -->
+  <footer>
+    <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
+  </footer>
 
-            // Show the clicked section
-            document.getElementById(section).classList.add('active');
-        }
-    </script>
+  <!-- Javascript for Tabs -->
+  <script>
+    function showContent(section) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(function(section) {
+        section.classList.remove('active');
+      });
+      document.getElementById(section).classList.add('active');
+    }
+  </script>
+
 </body>
 </html>
