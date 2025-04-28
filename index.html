@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Blog</title>
     <style>
+        /* General body and layout styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
+        /* Header Styling */
         header {
-            background-color: #4CAF50;
+            background-color: #0d3b66;
             color: white;
             padding: 3rem;
             text-align: center;
-            background-image: url('https://via.placeholder.com/1500x500'); /* Placeholder background image */
+            background-image: url('https://via.placeholder.com/1500x500'); /* Placeholder background */
             background-size: cover;
             background-position: center;
         }
@@ -29,8 +35,10 @@
             margin-top: 1rem;
             font-style: italic;
         }
+
+        /* Navigation Bar Styling */
         nav {
-            background-color: #333;
+            background-color: #034f84;
             overflow: hidden;
             text-align: center;
         }
@@ -39,12 +47,16 @@
             display: inline-block;
             padding: 14px 20px;
             text-decoration: none;
+            font-size: 1.1rem;
         }
         nav a:hover {
-            background-color: #575757;
+            background-color: #0277bd;
         }
+
+        /* Main Content Section Styling */
         main {
             padding: 3rem 2rem;
+            flex: 1; /* Allows the content to grow and fill the space */
         }
         .content-section {
             display: none;
@@ -55,7 +67,7 @@
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: #0d3b66;
         }
         article {
             background: white;
@@ -68,30 +80,33 @@
             color: gray;
             font-size: 0.9rem;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        /* Styling for Contact Form */
+
+        /* Contact Form Styles */
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
         .contact-form button {
-            background-color: #4CAF50;
+            background-color: #0d3b66;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .contact-form button:hover {
-            background-color: #45a049;
+            background-color: #0277bd;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #034f84;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
         }
     </style>
 </head>
