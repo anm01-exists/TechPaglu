@@ -2,29 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pretentious Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Personal Blog</title>
   <style>
+    /* Reset and Base Styling */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
     }
-
     body {
-      background-color: #f5f5dc; /* Beige */
-      color: #4b3832; /* Dark Brown */
-      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5dc; /* Soft Beige */
+      color: #333;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
+    /* Navbar */
     nav {
-      background-color: #d2b48c; /* Tan */
-      padding: 1rem 2rem;
+      background-color: #d2b48c;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      gap: 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -32,124 +34,115 @@
     nav a {
       color: #4b3832;
       text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+      font-size: 1rem;
     }
     nav a:hover {
-      text-decoration: underline;
+      background-color: #deb887;
     }
 
+    /* Header */
+    header {
+      background-color: #f5deb3;
+      text-align: center;
+      padding: 4rem 2rem;
+      background-image: url('https://via.placeholder.com/1500x400/ede6d6/4b3832?text=Blog+Banner');
+      background-size: cover;
+      background-position: center;
+      color: #4b3832;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.4rem;
+      margin-top: 0.5rem;
+      opacity: 0.8;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 3rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
     .content-section {
-      padding: 2rem;
-      flex-grow: 1;
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .active {
+      display: block;
     }
     .section-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      color: #6e5849;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    article {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
       margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .blog-list {
-      display: grid;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .blog-preview {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      cursor: pointer;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .blog-preview:hover {
-      transform: scale(1.02);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .full-blog {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      z-index: 2000;
-    }
-    .full-blog-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 800px;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      animation: zoomIn 0.3s ease;
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #d2b48c;
-      color: #4b3832;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    footer {
-      background-color: #d2b48c;
-      text-align: center;
-      padding: 1rem;
+    .date {
       font-size: 0.9rem;
-      color: #4b3832;
-      margin-top: auto;
+      color: #888;
+      margin-bottom: 1rem;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    /* Contact Form */
+    .contact-form {
       background: #fff;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
     }
-    input, textarea {
-      padding: 0.75rem;
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
       border: 1px solid #ccc;
       border-radius: 5px;
+      font-size: 1rem;
+      background: #faf9f6;
     }
-    button {
-      background: #d2b48c;
+    .contact-form button {
+      background-color: #d2b48c;
       color: #4b3832;
-      padding: 0.75rem;
+      padding: 0.8rem 2rem;
+      font-weight: bold;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
+      transition: background-color 0.3s;
+      font-size: 1rem;
     }
-    button:hover {
-      background: #c0a080;
+    .contact-form button:hover {
+      background-color: #deb887;
     }
 
-    .date {
+    /* Footer */
+    footer {
+      background-color: #d2b48c;
+      color: #4b3832;
+      text-align: center;
+      padding: 1.5rem;
       font-size: 0.9rem;
-      color: #7c5c4a;
-      margin-bottom: 1rem;
+    }
+
+    /* Fade Animation */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
   </style>
 </head>
@@ -158,100 +151,68 @@
 
   <!-- Navbar -->
   <nav>
-    <div class="logo">My Blog</div>
-    <div>
-      <a href="#home">Home</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <a href="javascript:void(0);" onclick="showContent('home')">Home</a>
+    <a href="javascript:void(0);" onclick="showContent('about')">About Me</a>
+    <a href="javascript:void(0);" onclick="showContent('blog')">Blog Posts</a>
+    <a href="javascript:void(0);" onclick="showContent('contact')">Contact</a>
   </nav>
 
-  <!-- Home Section -->
-  <div id="home" class="content-section">
-    <div class="section-title">Welcome to My Blog</div>
-    <p style="text-align:center;">A collection of chaotic thoughts and subtle realizations. Enjoy the ride.</p>
-  </div>
+  <!-- Header -->
+  <header>
+    <h1>Welcome to My Blog!</h1>
+    <p>Thoughts, stories, and more. A journey through words.</p>
+  </header>
 
-  <!-- Blog Section -->
-  <div id="blog" class="content-section">
-    <div class="section-title">Blog Posts</div>
+  <!-- Main -->
+  <main>
+    <!-- Home Section -->
+    <div id="home" class="content-section active">
+      <div class="section-title">Welcome to My Personal Blog</div>
+      <p style="text-align:center; max-width:700px; margin: 1rem auto;">I'm thrilled you're here! This is a space for thoughts, reflections, and perhaps a little chaos. Dive in and stay curious!</p>
+    </div>
 
-    <div class="blog-list">
-      <div class="blog-preview" data-post="pretentious">
+    <!-- About Section -->
+    <div id="about" class="content-section">
+      <div class="section-title">About Me</div>
+      <p style="text-align:center; max-width:700px; margin: 1rem auto;">Hello! I'm [Your Name]. I enjoy writing about the small, strange, beautiful things that weave into the fabric of life. Here you'll find musings on philosophy, creativity, and a hint of rebellion.</p>
+    </div>
+
+    <!-- Blog Section -->
+    <div id="blog" class="content-section">
+      <div class="section-title">Blog Posts</div>
+      <article>
         <h2>Pretentious Bullshit</h2>
         <p class="date">April 28, 2025</p>
-        <p>In the grand scheme of things, we often overcomplicate...</p>
-      </div>
-
-      <div class="blog-preview" data-post="diedie">
-        <h2>Die Die Die...</h2>
-        <p class="date">April 28, 2025</p>
-        <p>Every day, parts of us die. The old ambitions...</p>
-      </div>
+        <p>In the grand scheme of things, we often overcomplicate the simplest concepts. What we call "progress" is often a clever reframing of old ideas. Perhaps true growth lies not in mastery, but in realizing how little matters at all. Maybe it's all just, well... pretentious bullshit.</p>
+      </article>
     </div>
 
-    <!-- Full Blog Popup -->
-    <div class="full-blog" id="fullBlog">
-      <div class="full-blog-content" id="fullBlogContent">
-        <span class="close-btn" onclick="closeBlog()">X</span>
-        <div id="blogDetails"></div>
-      </div>
+    <!-- Contact Section -->
+    <div id="contact" class="content-section">
+      <div class="section-title">Contact Me</div>
+      <p style="text-align:center; max-width:700px; margin: 1rem auto;">Want to connect? Drop me a message below:</p>
+      <form action="https://formspree.io/f/mgvkvbyy" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
     </div>
-
-  </div>
-
-  <!-- Contact Section -->
-  <div id="contact" class="content-section">
-    <div class="section-title">Contact Me</div>
-    <form action="https://formspree.io/f/mgvkvbyy" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Feedback</button>
-    </form>
-  </div>
+  </main>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Pretentious Blog | Built with chaos and caffeine.
+    <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
+  <!-- JavaScript to Switch Sections -->
   <script>
-    const blogPosts = {
-      pretentious: {
-        title: "Pretentious Bullshit",
-        date: "April 28, 2025",
-        content: `In the grand scheme of things, we often overcomplicate the simplest concepts.
-                  What we call 'progress' is often a clever reframing of old ideas.
-                  Perhaps true growth lies not in mastery, but in realizing how little matters at all.
-                  Maybe it's all just, well... pretentious bullshit.`
-      },
-      diedie: {
-        title: "Die Die Die...",
-        date: "April 28, 2025",
-        content: `Every day, parts of us die. The old ambitions, the fading friendships, the misplaced fears — they all dissolve quietly.
-                  Yet, in every death, there’s an unseen rebirth.
-                  Maybe 'die, die, die' isn't a chant of despair but an anthem of transformation.
-                  Shed the layers. Kill the illusions. Let what must die, die — so that something truer can live.`
-      }
-    };
-
-    document.querySelectorAll('.blog-preview').forEach(preview => {
-      preview.addEventListener('click', function() {
-        const postId = this.getAttribute('data-post');
-        const post = blogPosts[postId];
-        document.getElementById('blogDetails').innerHTML = `
-          <h2>${post.title}</h2>
-          <p class="date">${post.date}</p>
-          <p style="margin-top:1rem;">${post.content}</p>
-        `;
-        document.getElementById('fullBlog').style.display = 'flex';
+    function showContent(section) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(function (sec) {
+        sec.classList.remove('active');
       });
-    });
-
-    function closeBlog() {
-      document.getElementById('fullBlog').style.display = 'none';
+      document.getElementById(section).classList.add('active');
     }
   </script>
 
