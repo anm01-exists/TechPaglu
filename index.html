@@ -51,6 +51,12 @@
             text-align: center;
             padding: 1rem;
         }
+        .content-section {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -60,22 +66,56 @@
     </header>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About Me</a>
-        <a href="#">Blog Posts</a>
-        <a href="#">Contact</a>
+        <a href="javascript:void(0);" onclick="showContent('home')">Home</a>
+        <a href="javascript:void(0);" onclick="showContent('about')">About Me</a>
+        <a href="javascript:void(0);" onclick="showContent('blog')">Blog Posts</a>
+        <a href="javascript:void(0);" onclick="showContent('contact')">Contact</a>
     </nav>
 
     <main>
-        <article>
-            <h2>Pretentious Bullshit</h2>
-            <p class="date">April 28, 2025</p>
-            <p>In the grand scheme of things, we often overcomplicate the simplest of concepts. What we call "progress" is often just a shift in perspective, or better yet, a skillful manipulation of what we consider important. The world continues to turn, yet we seem bent on creating significance out of mere distractions. Perhaps the only true advancement is in our ability to understand this absurdity and embrace the chaos. But I digress—it's all just pretentious bullshit, really.</p>
-        </article>
+        <!-- Home Section -->
+        <div id="home" class="content-section active">
+            <h2>Welcome to My Personal Blog</h2>
+            <p>I'm so glad you're here! This blog is a space where I share my thoughts, musings, and creative expressions. Stick around for more!</p>
+        </div>
+
+        <!-- About Me Section -->
+        <div id="about" class="content-section">
+            <h2>About Me</h2>
+            <p>Hi! I'm [Your Name], a curious thinker with an affinity for technology and philosophy. I started this blog to document my journey of discovery and the things I encounter along the way.</p>
+        </div>
+
+        <!-- Blog Section -->
+        <div id="blog" class="content-section">
+            <article>
+                <h2>Pretentious Bullshit</h2>
+                <p class="date">April 28, 2025</p>
+                <p>In the grand scheme of things, we often overcomplicate the simplest of concepts. What we call "progress" is often just a shift in perspective, or better yet, a skillful manipulation of what we consider important. The world continues to turn, yet we seem bent on creating significance out of mere distractions. Perhaps the only true advancement is in our ability to understand this absurdity and embrace the chaos. But I digress—it's all just pretentious bullshit, really.</p>
+            </article>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="content-section">
+            <h2>Contact Me</h2>
+            <p>If you'd like to get in touch, feel free to reach out through email or social media!</p>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showContent(section) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+            // Show the clicked section
+            document.getElementById(section).classList.add('active');
+        }
+    </script>
 </body>
 </html>
