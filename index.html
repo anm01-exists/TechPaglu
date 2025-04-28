@@ -36,7 +36,7 @@
       border-radius: 5px;
     }
     nav a:hover {
-      background-color: #deb887; /* Burlywood (lighter tan) */
+      background-color: #deb887; /* Burlywood */
     }
 
     /* Header */
@@ -163,10 +163,10 @@
     <div id="contact" class="content-section">
       <div class="section-title">Contact Me</div>
       <p>Want to connect? Drop me a message below:</p>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" rows="4" required></textarea>
+      <form action="https://formspree.io/f/mgvkvbyy" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
         <button type="submit">Send Message</button>
       </form>
     </div>
